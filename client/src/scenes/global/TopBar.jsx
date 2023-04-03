@@ -16,25 +16,23 @@ const TopBar = () => {
 
   return (
     <Box display="flex" justifyContent={"end"} p={2}>
-        <Box display={"flex"}>
-            <IconButton onClick={colorMode.toggleColorMode}>
-                {theme.palette.mode ==='dark' ? (
-                    <DarkModeOutlinedIcon/>
-                ):(
-                    <LightModeOutlinedIcon/>
-                )}
-            </IconButton>
-            <IconButton>
-                <SettingsOutlinedIcon/>
-            </IconButton>
-            <SelectLanguages/>
-            <IconButton>
-                <NotificationsOutlinedIcon/>
-            </IconButton>
-            <IconButton>
-                <PersonOutlinedIcon/>
-            </IconButton>
-        </Box>
+        <IconButton onClick={colorMode.toggleColorMode}>
+            {theme.palette.mode ==='dark' ? (
+                <DarkModeOutlinedIcon/>
+            ):(
+                <LightModeOutlinedIcon/>
+            )}
+        </IconButton>
+        <IconButton>
+            <SettingsOutlinedIcon/>
+        </IconButton>
+        <SelectLanguages/>
+        <IconButton>
+            <NotificationsOutlinedIcon/>
+        </IconButton>
+        <IconButton>
+            <PersonOutlinedIcon/>
+        </IconButton>
     </Box>
   )
 }

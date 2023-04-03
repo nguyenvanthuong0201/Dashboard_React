@@ -1,43 +1,28 @@
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import SvgIcon from "@mui/material/SvgIcon";
 import React from 'react';
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { currencies } from "../constants/Select";
 
 
-const currencies = [
-    {
-    label: <LocationOnIcon/>,
-    value: "vn"
-    },
-    {
-      label: <DarkModeOutlinedIcon/>,
-      value: "jp"
-    },
-    {
-      label: <DarkModeOutlinedIcon/>,
-      value: "en"
-    },
-  ];
 const SelectLanguages = () => {
+  const { i18n } = useTranslation()
+  const [language, setLanguage] = useState(localStorage.getItem('language'))
 
+  const handleChangeLanguages = (e) =>{
+    localStorage.setItem('language', e.target.value)
+    setLanguage(e.target.value)
+    i18n.changeLanguage(e.target.value)
+  }
   return (
       <Select
-      onChange={(e)=>console.log('e', e.target.value)}
-        // displayEmpty
-        // renderValue={(value) => {
-        //   console.log(value);
-        //   return (
-        //     <Box sx={{ display: "flex", gap: 1 }}>
-        //       {value}
-        //     </Box>
-        //   );
-        // }}
+      value={language || 'en'}
+      style={{width:"90px",display:"flex",alignItems:"center",height:"38px"}}
+      onChange={(e)=>handleChangeLanguages(e)}
       >
         {currencies.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
+          <MenuItem key={option.value} value={option.value} style={{display:"flex",alignItems:"center"}}>
             {option.label}
           </MenuItem>
         ))}
