@@ -4,6 +4,7 @@ import { Box, IconButton, Tooltip, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
+import TodayIcon from '@mui/icons-material/Today';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
@@ -17,6 +18,7 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import ImageUser from "../../assets/user.png"
+import { useTranslation } from "react-i18next";
 
 const Item = ({ title, to, icon, selected, setSelected ,isCollapsed}) => {
   const theme = useTheme();
@@ -43,6 +45,8 @@ const Sidebar = () => {
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+  const {t} = useTranslation();
+
 
   return (
     <Box
@@ -129,11 +133,11 @@ const Sidebar = () => {
               isCollapsed={isCollapsed}
             />
 
-            <SubMenu title="Manage" icon={<PeopleOutlinedIcon />}>
+            <SubMenu title={t('manage')} icon={<PeopleOutlinedIcon />}>
               <Item
-              title="Manage Team"
-              to="/team"
-              icon={<PeopleOutlinedIcon />}
+              title={t("calendar")}
+              to="/calendar"
+              icon={<TodayIcon />}
               selected={selected}
               setSelected={setSelected}
               isCollapsed={isCollapsed}
@@ -155,7 +159,7 @@ const Sidebar = () => {
               isCollapsed={isCollapsed}
               />
           </SubMenu>
-          <SubMenu  title="Manage" icon={<PeopleOutlinedIcon />}>
+          <SubMenu title="Tool" icon={<PeopleOutlinedIcon />}>
           <Item
               title="Profile Form"
               to="/form"

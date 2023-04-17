@@ -8,7 +8,7 @@ export const FlagVN = () => {
   return (
     <div style={{display:'flex',alignItems:'center'}}>
         <img src={logoVN} alt="Logo Vietnam" width={"30px"}/>&nbsp;
-            <span>VN</span>
+            <span>VI</span>
     </div>
   )
 }
@@ -32,7 +32,7 @@ export const FlagJP = () => {
     return (
         <div style={{display:'flex',alignItems:'center'}}>
             <img src={logoJP} alt="Logo JP" width={"30px"}/>&nbsp;
-            <span>JP</span>
+            <span>JA</span>
         </div>
     )
 }

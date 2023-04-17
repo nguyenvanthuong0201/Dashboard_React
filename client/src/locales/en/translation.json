@@ -1,4 +1,12 @@
 {
+  "calendar":"Calendar",
+  "subCalendar":"Full calendar interactive page",
+  "manage":"Manage",
+  "events":"Events",
+  
+
+
+  
   "ourServices": "Services",
   "findBabysitters": "Finding Babysitter",
   "contactUs": "Contact Us",

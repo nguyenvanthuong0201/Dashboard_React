@@ -7,10 +7,10 @@ export const currencies = [
     },
     {
       label: <FlagJP/>,
-      value: "jp"
+      value: "ja"
     },
     {
       label: <FlagVN/>,
-      value: "vn"
+      value: "vi"
     },
   ];
