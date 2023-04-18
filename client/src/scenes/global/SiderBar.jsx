@@ -3,7 +3,6 @@ import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { Box, IconButton, Tooltip, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
-import { tokens, useDarkSide } from "../../theme";
 import TodayIcon from '@mui/icons-material/Today';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
@@ -92,21 +91,21 @@ const Sidebar = () => {
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  // src={ImageUser}
+                  src={ImageUser}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
               <Box textAlign="center">
                 <Typography
-                  variant="h4"
-                  className="text-slate-900 dark:text-white"
+                  variant="h5"
+                  className="text-slate-900 dark:text-white text-xl"
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  {/* Nguyễn Văn Thương */}
+                  Nguyễn Văn Thương
                 </Typography>
-                <Typography variant="h5" className="text-slate-900 dark:text-white">
-                  {/* Developer */}
+                <Typography variant="h6" className="text-slate-900 dark:text-white">
+                  Developer
                 </Typography>
               </Box>
             </Box>

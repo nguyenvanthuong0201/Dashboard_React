@@ -1,20 +1,16 @@
 import { Typography, Box, useTheme } from "@mui/material";
-import { tokens } from "../theme";
 
 const Header = ({ title, subtitle }) => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
+
   return (
-    <Box mb="30px">
+    <Box >
       <Typography
-        variant="h2"
-        className="bg-gray-200 dark:bg-slate-900"
-        fontWeight="bold"
-        sx={{ m: "0 0 5px 0" }}
+        variant="h5"
+        className="text-slate-900 dark:text-white font-bold"
       >
         {title}
       </Typography>
-      <Typography variant="h5" color={colors.greenAccent[400]}>
+      <Typography className="text-slate-900 dark:text-white text-sm  mb-2">
         {subtitle}
       </Typography>
     </Box>

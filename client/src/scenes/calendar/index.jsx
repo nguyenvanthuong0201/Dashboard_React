@@ -5,8 +5,6 @@ import listPlugin from "@fullcalendar/list"
 import timeGridPlugin from "@fullcalendar/timegrid"
 import FullCalendar from "@fullcalendar/react"
 import { formatDate } from '@fullcalendar/core'
-import { useTheme } from "@emotion/react";
-import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import { Box } from "@mui/system";
 import { List, ListItem, ListItemText, Typography } from "@mui/material";
@@ -14,11 +12,7 @@ import { useTranslation } from "react-i18next";
 import allLocales from '@fullcalendar/core/locales-all'
 
 const Calendar = () => {
-    const theme = useTheme();
-    const colors = tokens(theme.palette.mode)
     const [currentEvents, setCurrentEvents] = useState([])
-    console.log('currentEvents', currentEvents[0]?.id)
-
     const { t ,i18n}= useTranslation();
 
     const handleDateClick = (selected)=>{
@@ -62,36 +56,34 @@ const Calendar = () => {
          <Header title={t('calendar')} subtitle={t('subCalendar')}/>
         <Box display={'flex'} justifyContent={'space-between'}>
             {/* sider bar calendar  */}
-            <Box flex={'1 1 20%'} backgroundColor={colors.primary[400]} p="15px" borderRadius="4px">
-                <Typography variant="h5">{t('events')}</Typography>
+            <div className="flex-[1_1_20%] dark:bg-indigo-500 bg-green-200 p-4 rounded max-h-[75vh] overflow-y-scroll">
+                <div className="text-lg font-bold text-slate-900 dark:text-white">{t('events')}</div>
                 <List>
                 {currentEvents.map((event) => (
                     <ListItem
                         key={event.id}
-                        sx={{
-                        backgroundColor: colors.greenAccent[500],
-                        margin: "10px 0",
-                        borderRadius: "2px",
-                        }}
+                        className="bg-white my-2 rounded"
                     >
                         <ListItemText
+                        className="text-center"
                         primary={event.title}
                         secondary={
-                            <Typography>
+                            <span className="text-sm" >
                             {formatDate(event.start, {
                                 year: "numeric",
                                 month: "short",
                                 day: "numeric",
                             })}
-                            </Typography>
+                            </span>
                         }
                         />
                     </ListItem>
                     ))}
                 </List>
-            </Box>
+            </div>
+
             {/* calendar */}
-            <Box flex="1 1 100%" ml="15px">
+            <div flex="1 1 100%" ml="15px" className="flex-[1_1_100%] ml-3 text-slate-900 dark:text-white">
             <FullCalendar
                 locales={allLocales} locale={i18n.language}
                 height="75vh"
@@ -127,7 +119,7 @@ const Calendar = () => {
                 },
                 ]}
             />
-            </Box>
+            </div>
             </Box>
        </Box>
     )

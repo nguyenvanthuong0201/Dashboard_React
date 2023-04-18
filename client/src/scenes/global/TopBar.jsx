@@ -6,9 +6,9 @@ import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import { ColorModeContext, tokens, useDarkSide } from '../../theme';
 import SelectLanguages from '../../components/SelectLanguages';
 import { useState } from 'react';
+import { useDarkSide } from '../../theme';
 
 const TopBar = () => {
     const [colorTheme, setTheme] = useDarkSide();
@@ -21,8 +21,8 @@ const TopBar = () => {
     }
 
   return (
-    <Box display="flex" justifyContent={"end"} p={2}>
-        <IconButton 
+    <div className='flex justify-end p-3 text-slate-900 dark:text-white'>
+        <IconButton className=' text-slate-900 dark:text-white'
         onClick={toggleDarkMode}>
             {darkSide ? (
                 <DarkModeOutlinedIcon/>
@@ -30,17 +30,17 @@ const TopBar = () => {
                 <LightModeOutlinedIcon/>
             )}
         </IconButton>
-        <IconButton>
+        <IconButton className=' text-slate-900 dark:text-white'>
             <SettingsOutlinedIcon/>
-        </IconButton>
+        </IconButton >
         <SelectLanguages/>
-        <IconButton>
+        <IconButton className=' text-slate-900 dark:text-white'>
             <NotificationsOutlinedIcon/>
         </IconButton>
-        <IconButton>
+        <IconButton className=' text-slate-900 dark:text-white'>
             <PersonOutlinedIcon/>
         </IconButton>
-    </Box>
+    </div>
   )
 }
 

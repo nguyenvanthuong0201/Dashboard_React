@@ -1,3 +1,8 @@
+text-slate-900 dark:text-white
 
-### Install package
-npm i @emotion/react @emotion/styled @mui/material @mui/x-data-grid @mui/icons-material react-router-dom react-pro-sidebar formik yup @fullcalendar/core @fullcalendar/daygrid @fullcalendar/timegrid @fullcalendar/list @nivo/bar @nivo/core @nivo/geo @nivo/line @nivo/pie @fullcalendar/interaction
+dark mode 
+ bg-indigo-500 : background card
+ 
+
+1.Cài debug và tạo thử dữ liệu
+2.không set giá trị trực tiếp được nên giờ sẽ phải setup manage state
