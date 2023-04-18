@@ -6,18 +6,25 @@ import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import { ColorModeContext, tokens } from '../../theme';
+import { ColorModeContext, tokens, useDarkSide } from '../../theme';
 import SelectLanguages from '../../components/SelectLanguages';
+import { useState } from 'react';
 
 const TopBar = () => {
-    const theme = useTheme();
-    const colors = tokens(theme.palette.mode);
-    const colorMode = useContext(ColorModeContext)
+    const [colorTheme, setTheme] = useDarkSide();
+    const [darkSide, setDarkSide] = useState(
+        colorTheme === "light" ? true : false
+    );
+    const toggleDarkMode = () =>{
+        setTheme(colorTheme);
+        setDarkSide(!darkSide);
+    }
 
   return (
     <Box display="flex" justifyContent={"end"} p={2}>
-        <IconButton onClick={colorMode.toggleColorMode}>
-            {theme.palette.mode ==='dark' ? (
+        <IconButton 
+        onClick={toggleDarkMode}>
+            {darkSide ? (
                 <DarkModeOutlinedIcon/>
             ):(
                 <LightModeOutlinedIcon/>

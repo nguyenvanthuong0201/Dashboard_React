@@ -2,7 +2,7 @@ import React from 'react'
 import logoVN from "../assets/logo-vn.png";
 import logoJP from "../assets/logo-jp.png";
 import logoEN from "../assets/logo-en.png";
-import logoUS from "../assets/logo-us.png";
+import logoUK from "../assets/logo-uk.png";
 
 export const FlagVN = () => {
   return (
@@ -15,7 +15,7 @@ export const FlagVN = () => {
 export const FlagEN = () => {
     return (
       <div style={{display:'flex',alignItems:'center'}}>
-          <img src={logoEN} alt="Logo EN" width={"30px"}/>&nbsp;
+          <img src={logoUK} alt="Logo EN" width={"30px"}/>&nbsp;
           <span>EN</span>
       </div>
     )

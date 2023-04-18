@@ -18,7 +18,7 @@ const SelectLanguages = () => {
   return (
       <Select
       value={language || 'en'}
-      style={{width:"90px",display:"flex",alignItems:"center",height:"38px"}}
+      className="w-24 flex items-center h-9 "
       onChange={(e)=>handleChangeLanguages(e)}
       >
         {currencies.map((option) => (

@@ -12,10 +12,7 @@ function App() {
   const {t} = useTranslation();
    return (
     <BrowserRouter>
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-      <CssBaseline/>
-        <div className="app">
+        <div className="app bg-gray-200 dark:bg-slate-900">
           <Sidebar/>
           <main className='content'>
               <TopBar/>
@@ -34,8 +31,6 @@ function App() {
             </Routes>
           </main>
         </div>
-      </ThemeProvider>
-    </ColorModeContext.Provider>
     </BrowserRouter>
   )
 }

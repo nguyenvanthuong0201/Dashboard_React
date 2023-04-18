@@ -3,7 +3,7 @@ import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { Box, IconButton, Tooltip, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
-import { tokens } from "../../theme";
+import { tokens, useDarkSide } from "../../theme";
 import TodayIcon from '@mui/icons-material/Today';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
@@ -21,15 +21,11 @@ import ImageUser from "../../assets/user.png"
 import { useTranslation } from "react-i18next";
 
 const Item = ({ title, to, icon, selected, setSelected ,isCollapsed}) => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
   return (
     <Tooltip title={title} placement="right" disableHoverListener={!isCollapsed}>
       <MenuItem
         active={selected === title}
-        style={{
-          color: colors.grey[100],
-        }}
+        className="text-slate-900 dark:text-white text-sm"
         onClick={() => setSelected(title)}
         icon={icon}
       >
@@ -41,18 +37,15 @@ const Item = ({ title, to, icon, selected, setSelected ,isCollapsed}) => {
 };
 
 const Sidebar = () => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
   const {t} = useTranslation();
-
 
   return (
     <Box
       sx={{
         "& .pro-sidebar-inner": {
-          background: `${colors.primary[400]} !important`,
+          background: `none !important`,
         },
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important",
@@ -68,16 +61,12 @@ const Sidebar = () => {
         },
       }}
     >
-      <ProSidebar collapsed={isCollapsed}>
+      <ProSidebar collapsed={isCollapsed} className="bg-gray-200 dark:bg-slate-900">
         <Menu iconShape="square">
-          {/* LOGO AND MENU ICON */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
             icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
-            style={{
-              margin: "10px 0 20px 0",
-              color: colors.grey[100],
-            }}
+            className="mt-2.5 mb-5"
           >
             {!isCollapsed && (
               <Box
@@ -86,10 +75,10 @@ const Sidebar = () => {
                 alignItems="center"
                 ml="15px"
               >
-                <Typography variant="h3" color={colors.grey[100]}>
+                <Typography variant="h5"  className="text-slate-900 dark:text-white" >
                   ADMIN
                 </Typography>
-                <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+                <IconButton className="text-slate-900 dark:text-white"  onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
                 </IconButton>
               </Box>
@@ -103,21 +92,21 @@ const Sidebar = () => {
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src={ImageUser}
+                  // src={ImageUser}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
               <Box textAlign="center">
                 <Typography
                   variant="h4"
-                  color={colors.grey[100]}
+                  className="text-slate-900 dark:text-white"
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  Nguyễn Văn Thương
+                  {/* Nguyễn Văn Thương */}
                 </Typography>
-                <Typography variant="h5" color={colors.greenAccent[500]}>
-                  Developer
+                <Typography variant="h5" className="text-slate-900 dark:text-white">
+                  {/* Developer */}
                 </Typography>
               </Box>
             </Box>

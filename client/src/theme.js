@@ -1,5 +1,6 @@
 import { createContext, useState, useMemo } from "react";
 import { createTheme } from "@mui/material/styles";
+import { useEffect } from "react";
 
 // color design tokens export
 export const tokens = (mode) => ({
@@ -212,3 +213,16 @@ export const useMode = () => {
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return [theme, colorMode];
 };
+
+export const useDarkSide =()=> {
+  const [theme, setTheme] = useState(localStorage.theme);
+  const colorTheme = theme === "dark" ? "light" : "dark";
+  useEffect(() => {
+      const root = window.document.documentElement;
+      root.classList.remove(colorTheme);
+      root.classList.add(theme);
+      localStorage.setItem('theme', theme);
+  }, [theme, colorTheme]);
+
+  return [colorTheme, setTheme]
+}
