@@ -4,10 +4,11 @@ import Sidebar from './scenes/global/SiderBar';
 import Dashboard from './scenes/dashboard';
 import { useTranslation } from 'react-i18next'
 import Calendar from './scenes/calendar';
+import { useGetCalendar } from './queries/useCalendar';
 
 function App() {
   const {t} = useTranslation();
-   return (
+  return (
     <BrowserRouter>
         <div className="app bg-gray-200 dark:bg-slate-900">
           <Sidebar/>

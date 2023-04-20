@@ -10,10 +10,13 @@ import { Box } from "@mui/system";
 import { List, ListItem, ListItemText, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import allLocales from '@fullcalendar/core/locales-all'
+import { useGetCalendar } from "../../queries/useCalendar";
 
 const Calendar = () => {
     const [currentEvents, setCurrentEvents] = useState([])
     const { t ,i18n}= useTranslation();
+    const { data: calendar}= useGetCalendar('U1681871914158')
+
 
     const handleDateClick = (selected)=>{
         const title = prompt("Please enter a new title for your event")
@@ -106,18 +109,7 @@ const Calendar = () => {
                 select={handleDateClick}
                 eventClick={handleEventClick}
                 eventsSet={(events) => onEventSet(events)}
-                initialEvents={[
-                {
-                    id: "12315",
-                    title: "All-day event",
-                    date: "2023-04-17",
-                },
-                {
-                    id: "5123",
-                    title: "Timed event",
-                    date: "2022-04-18",
-                },
-                ]}
+                initialEvents={calendar?.result}
             />
             </div>
             </Box>
