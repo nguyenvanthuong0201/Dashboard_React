@@ -5,9 +5,9 @@ export const sendToken = (user, statusCode, req, res) => {
         expiresIn: process.env.JWT_EXPIRES
     })
     req.session.User = {token}
+    delete user.password
     res.status(statusCode).json({
         success:true,
-        user,
-        token
+        result:user,
     })
 }

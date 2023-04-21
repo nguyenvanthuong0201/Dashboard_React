@@ -2,6 +2,18 @@ import { client } from "../config/db.js";
 import { catchAsyncErrors } from "../middleware/catchAsyncError.js";
 import { ErrorHandler } from "../utils/errorHandler.js";
 import { sendToken } from "../utils/sendToken.js";
+import bcrypt  from 'bcryptjs';
+
+export const checkAuth = catchAsyncErrors(async (req, res, next) => {
+    if(!req.user){
+        return next(new ErrorHandler("authenticated false", 400))
+    }
+    delete req.user.password;
+    res.status(200).json({
+        success:true,
+        result:req.user,
+    })
+})
 
 export const register = catchAsyncErrors(async (req, res, next) => {
     const { name, email, password } = req.body;
@@ -11,14 +23,16 @@ export const register = catchAsyncErrors(async (req, res, next) => {
     try {
         await client.connect();
         const database = client.db("MyLife");
-        const calendar = database.collection("calendar");
+        const users = database.collection("user");
+        users.createIndex({ email: 1 }, { unique: true })
+        .catch(error => next(new ErrorHandler("Email duplicate ", 400)))
         let doc = {
             userID:"U"+Date.now(),
             name,
             email,
-            password,
+            password:await bcrypt.hash(password, 10),
         }
-        const _id = (await calendar.insertOne({doc})).insertedId;
+        const _id = (await users.insertOne({...doc})).insertedId;
         const user = {...doc,_id}
         sendToken(user, 200, req, res);
     } catch (error) {
@@ -39,8 +53,8 @@ export const login = catchAsyncErrors(async (req, res, next) => {
     try {
         await client.connect();
         const database = client.db("MyLife");
-        const calendar = database.collection("calendar");
-        const user = await calendar.findOne({email});
+        const users = database.collection("user");
+        const user = await users.findOne({email});
         const isPasswordMatched  = await bcrypt.compare(password, user?.password)
         if(!user || !isPasswordMatched){
             return next(new ErrorHandler("Invalid email orr password",401))

@@ -5,16 +5,22 @@ import { client } from "../config/db.js";
 
 
 export const isAuthenticatedUser  = catchAsyncErrors(async(req,res,next)=>{
-    const {token} = req.session.User;
-    if(!token){
+    if(!req.session.User){
         return next( new ErrorHandler("Please login to access this resource",401))
     }
+    const {token} = req.session.User;
     const decodedData = jwt.verify(token, process.env.JWT_SECRET)
-    await client.connect();
-    const database = client.db("MyLife");
-    const calendar = database.collection("calendar");
-    req.user= await calendar.findOne(decodedData._id);
-    next();
+    try {
+        await client.connect();
+        const database = client.db("MyLife");
+        const calendar = database.collection("user");
+        req.user= await calendar.findOne(decodedData._id);
+    } catch (error) {
+        console.log("Please login to access this resource")
+    } finally {
+        await client.close();
+        next();
+    }
 });
 
 export const authorizeRoles = (...role)=>{
