@@ -1,24 +1,20 @@
-import React from 'react'
-import { Redirect, Route } from 'react-router'
+import React from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
+import Sidebar from '../scenes/global/SiderBar';
+import TopBar from '../scenes/global/TopBar';
 
-const AdminRoute = ({ exact = false, path, children, user }) => {
-  return (
-    <Route
-      exact={exact}
-      path={path}
-      render={({ location }) =>
-        !user ? (
-          <Redirect to={{ pathname: '/login', state: { from: location } }} />
-        ) : user.role === '0' ? (
-          children
-        ) : (
-          <Redirect
-            to={{ pathname: '/permission-denied', state: { from: location } }}
-          />
-        )
-      }
-    />
-  )
+const AdminRoute = ({user}) => {
+    return (user && user.role === '0') ? (
+      <>
+        <div className="app bg-gray-200 dark:bg-slate-900">
+          <Sidebar/>
+          <main main className='content'>
+            <TopBar/>
+            <Outlet />
+          </main>
+        </div>
+      </>
+    )
+     : <Navigate to="/login" />;
 }
-
 export default AdminRoute

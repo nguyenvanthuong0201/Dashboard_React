@@ -8,25 +8,22 @@ import { useGetCalendar } from './queries/useCalendar';
 import Home from './scenes/home';
 import ErrorPage from './scenes/global/ErrorPage';
 import AdminRoute from './routes/AdminRoute';
+import { useGetUser } from './queries/useUser';
 
 function App() {
-  const {t} = useTranslation();
-  const {data,isLoading} = useGetUser();
-  console.log('data,', data,isLoading )
+  const { t } = useTranslation();
+  const { data, isLoading } = useGetUser();
+  console.log('data,', data, isLoading)
   return (
     <BrowserRouter>
-            <Routes>
-            <Route path="/" element={<Home />} /> 
-            <div className="app bg-gray-200 dark:bg-slate-900">
-            <Sidebar/>
-          <main main className='content'>
-            <TopBar/>
-            <AdminRoute path="/admin/dashboard"><Dashboard /></AdminRoute>
-            <AdminRoute path="/admin/calendar"><Calendar /></AdminRoute>
-            <Route path="/permission-denied" element={<ErrorPage />} /> 
-            </main>
-            </div>
-            </Routes>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<AdminRoute />} >
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/calendar" element={<Calendar />} />
+        </Route>
+        <Route path="/permission-denied" element={<ErrorPage />} />
+      </Routes>
     </BrowserRouter>
   )
 }
