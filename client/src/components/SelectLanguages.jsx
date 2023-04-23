@@ -22,13 +22,13 @@ const SelectLanguages = () => {
       sx={{
         color: "white",
         '.MuiOutlinedInput-notchedOutline': {
-          borderColor: 'red',
+          borderColor: '#915EFF',
         },
         '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-          borderColor: 'red',
+          borderColor: '#915EFF',
         },
         '&:hover .MuiOutlinedInput-notchedOutline': {
-          borderColor: 'red',
+          borderColor: '#915EFF',
         },
         '.MuiSvgIcon-root ': {
           fill: "white !important",
