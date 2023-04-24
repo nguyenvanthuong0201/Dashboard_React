@@ -25,7 +25,7 @@ const FormikInput = (props) => {
                     'en-US'
                   )
                 : e.target.value
-    
+            helpers.setTouched(true,true)
             helpers.setValue(value)
           }}
         />

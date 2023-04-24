@@ -251,3 +251,43 @@ body,
 .wavy-input:focus-visible {
   outline: none;
 }
+.error-message {
+  position: relative;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  color: red;
+  font-size: 14px;
+}
+
+.input-with-icon {
+  position: relative;
+}
+.inner-icon {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  cursor: pointer;
+  color: white;
+}
+.text-wavy-400{
+  color: #1ab6cf;
+}
+.text-wavy-500{
+  color: #10B6CF;
+}
+
+.button-link,
+a.button-link {
+  padding: 6px 16px;
+  border-radius: 8px;
+  background: #10b6cf;
+  color: white !important;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+}
+.button-link .btn-outline, .button-link .btn-outline {
+  border: 1 solid #10b6cf;
+  background: white !important;
+  color: #10b6cf !important;
+}
