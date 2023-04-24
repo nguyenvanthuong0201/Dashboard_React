@@ -9,6 +9,7 @@ import Home from './scenes/home';
 import ErrorPage from './scenes/global/ErrorPage';
 import AdminRoute from './routes/AdminRoute';
 import { useGetUser } from './queries/useUser';
+import Login from './scenes/login';
 
 function App() {
   const { t } = useTranslation();
@@ -18,6 +19,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<AdminRoute />} >
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/calendar" element={<Calendar />} />
