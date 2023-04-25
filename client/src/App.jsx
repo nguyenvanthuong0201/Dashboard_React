@@ -1,27 +1,36 @@
-import TopBar from './scenes/global/TopBar';
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-import Sidebar from './scenes/global/SiderBar';
-import Dashboard from './scenes/dashboard';
-import { useTranslation } from 'react-i18next'
-import Calendar from './scenes/calendar';
-import { useGetCalendar } from './queries/useCalendar';
-import Home from './scenes/home';
-import ErrorPage from './scenes/global/ErrorPage';
-import AdminRoute from './routes/AdminRoute';
+import axios from 'axios';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useGetUser } from './queries/useUser';
+import AdminRoute from './routes/AdminRoute';
+import Calendar from './scenes/calendar';
+import Dashboard from './scenes/dashboard';
+import ErrorPage from './scenes/global/ErrorPage';
+import Home from './scenes/home';
 import Login from './scenes/login';
 
 function App() {
+  axios.defaults.withCredentials = true;
   const { t } = useTranslation();
-  const { data, isLoading } = useGetUser();
-  console.log('data,', data, isLoading)
+  const [user, setUser] = useState()
+  const {isLoading } = useGetUser({
+    retry:1,
+    onSuccess: (data) => {
+      setUser(data?.result)
+    },
+    onError: (error) => {
+      setUser(null)
+    },
+  });
+  console.log('user', user)
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home user={user} />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/admin" element={<AdminRoute />} >
-          <Route path="/admin/dashboard" element={<Dashboard />} />
+        <Route path="/admin" element={user && <AdminRoute user={user} />} >
+          <Route path="/admin" element={<Dashboard />} />
           <Route path="/admin/calendar" element={<Calendar />} />
         </Route>
         <Route path="/permission-denied" element={<ErrorPage />} />

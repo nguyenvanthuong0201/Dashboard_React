@@ -31,6 +31,7 @@ export const register = catchAsyncErrors(async (req, res, next) => {
             name,
             email,
             password:await bcrypt.hash(password, 10),
+            role:0
         }
         const _id = (await users.insertOne({...doc})).insertedId;
         const user = {...doc,_id}
@@ -65,7 +66,7 @@ export const login = catchAsyncErrors(async (req, res, next) => {
             success: false,
             error
         });
-    } finally{
+    } finally{ 
         await client.close();
     }
 })

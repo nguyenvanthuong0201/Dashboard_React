@@ -8,26 +8,45 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from "yup";
+import { useLoginUser } from "../../queries/useUser";
+import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 
 const Login = () => {
+  const {mutate:loginUser} = useLoginUser()
   const [showPassword, setShowPassword] = useState(false)
   const { t } = useTranslation()
+  const navigate  = useNavigate();
+  const queryClient = useQueryClient()
+
 
   const SignupSchema = Yup.object().shape({
-    name: Yup.string()
+    email: Yup.string()
+    .email('Invalid email')
+    .required('Required'),
+    password: Yup.string()
       .min(2, 'Too Short!')
       .max(70, 'Too Long!')
       .required('Required'),
-    email: Yup.string()
-      .email('Invalid email')
-      .required('Required'),
   });
+  const handleSubmitForm =(value)=>{
+    loginUser({...value},{
+      onSuccess:(data)=>{
+        queryClient.setQueryData(['user'], data)
+        navigate('/admin')
+      },
+      onError:(error)=>{
+        console.log('error', error)
+      }
+    })
+    
+  }
 
   return (
     <section
       className={`relative w-full h-screen mx-auto bg-hero-pattern bg-cover bg-no-repeat bg-center`}
     >
-      <Navbar />
+      {/* <Navbar /> */}
       <div
         className={`absolute inset-0 top-[120px]  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5 `}
       >
@@ -37,19 +56,17 @@ const Login = () => {
           </div>
           <div className="w-full sm:w-2/5  rounded-2xl sm:rounded-none sm:rounded-r-2xl m-5 ">
             <div className="text-center mt-4">
-              
+
               <p className="w-full text-xs">Welcome</p>
               <h1 className="w-full text-lg sm:text-xl lg:text-2xl font-bold mt-2">Sign in now</h1>
             </div>
             <Formik
               initialValues={{
-                name: '',
                 email: '',
+                password: '',
               }}
               validationSchema={SignupSchema}
-              onSubmit={values => {
-                console.log(values);
-              }}
+              onSubmit={(values)=>handleSubmitForm(values)}
             >
               <Form>
                 <div className="w-full mt-5">
@@ -61,28 +78,27 @@ const Login = () => {
                     required={true}
                   />
                 </div>
-                  <FormInput
-                    name='password'
-                    type={showPassword ? 'text' : 'password'}
-                    id='password'
-                    transKey='password'
-                    required={true}
-                  >
-                    {showPassword ? (
-                      <VisibilityIcon
-                        onClick={() => setShowPassword(!showPassword)}
-                        className='inner-icon h-5 w-5 text-gray-500'
-                      />
-                    ) : (
-                      <VisibilityOffIcon
-                        onClick={() => setShowPassword(!showPassword)}
-                        className='inner-icon h-5 w-5 text-gray-500'
-                      />
-                    )}
-                  </FormInput>
+                <FormInput
+                  name='password'
+                  type={showPassword ? 'text' : 'password'}
+                  id='password'
+                  transKey='password'
+                  required={true}
+                >
+                  {showPassword ? (
+                    <VisibilityIcon
+                      onClick={() => setShowPassword(!showPassword)}
+                      className='inner-icon h-5 w-5 text-gray-500'
+                    />
+                  ) : (
+                    <VisibilityOffIcon
+                      onClick={() => setShowPassword(!showPassword)}
+                      className='inner-icon h-5 w-5 text-gray-500'
+                    />
+                  )}
+                </FormInput>
                 <div className="w-full flex justify-center">
-                <button
-                    type='submit'
+                  <button type='submit'
                     className='button-link py-3 my-4 px-8 rounded-xl outline-none w-40 text-white font-bold'
                   >
                     Login
