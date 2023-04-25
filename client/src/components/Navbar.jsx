@@ -77,7 +77,7 @@ const Navbar = ({ user }) => {
               aria-haspopup="true"
               aria-expanded={open ? 'true' : undefined}
             >
-              <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+              <Avatar sx={{ width: 32, height: 32 }} alt="Remy Sharp" src="./user.png" />
             </IconButton>
             <MenuHeader anchorEl={anchorEl} open={open} handleClose={handleClose} />
           </li>) : (

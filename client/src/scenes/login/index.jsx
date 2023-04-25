@@ -19,7 +19,6 @@ const Login = () => {
   const navigate  = useNavigate();
   const queryClient = useQueryClient()
 
-
   const SignupSchema = Yup.object().shape({
     email: Yup.string()
     .email('Invalid email')

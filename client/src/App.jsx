@@ -9,6 +9,7 @@ import Dashboard from './scenes/dashboard';
 import ErrorPage from './scenes/global/ErrorPage';
 import Home from './scenes/home';
 import Login from './scenes/login';
+import ProgressLoader from './components/ProgressLoader';
 
 function App() {
   axios.defaults.withCredentials = true;
@@ -27,9 +28,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home user={user} />} />
+        <Route path="/" element={<Home user={user} isLoading={isLoading} />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/admin" element={user && <AdminRoute user={user} />} >
+        <Route path="/admin" element={user && <AdminRoute user={user}  isLoading={isLoading}   />} >
           <Route path="/admin" element={<Dashboard />} />
           <Route path="/admin/calendar" element={<Calendar />} />
         </Route>
