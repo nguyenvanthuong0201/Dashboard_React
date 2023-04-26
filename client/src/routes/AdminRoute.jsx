@@ -4,7 +4,6 @@ import Sidebar from '../scenes/global/SiderBar';
 import TopBar from '../scenes/global/TopBar';
 
 const AdminRoute = ({ user }) => {
-  console.log('user admin', user)
   return (user && user?.role === 0) ? (
     <>
       <div className="app bg-gray-200 dark:bg-slate-900">

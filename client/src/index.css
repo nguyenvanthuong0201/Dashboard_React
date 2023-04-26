@@ -312,6 +312,7 @@ a.button-link {
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }
+
 #loader:before {
   content: "";
   position: absolute;
@@ -361,4 +362,20 @@ a.button-link {
       -ms-transform: rotate(360deg);
       transform: rotate(360deg);
   }
+}
+
+/* carousel  */
+
+.carousel.carousel-slider, .slider-wrapper.axis-horizontal, .slider.animated{
+  height: 100%;
+}
+.card_carousel{
+  width: 100%;
+  text-align: left;
+  background:  rgba(16, 182, 207, 0.7);
+  border-radius: 1rem 1rem 0rem 0rem;
+  padding: 10px;
+}
+.carousel .control-dots .dot{
+  background: rgba(16, 182, 207, 1) !important;
 }
