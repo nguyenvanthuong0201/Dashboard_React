@@ -12,18 +12,20 @@ import { useLoginUser } from "../../queries/useUser";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import ProgressLoader from "../../components/ProgressLoader";
+import CarouselComponent from "../../components/Carousel";
 
 const Login = ({user,isLoading}) => {
   const {mutate:loginUser} = useLoginUser()
   const [showPassword, setShowPassword] = useState(false)
+  const [avatarPreview, setAvatarPreview] = useState("./user.png");
   const { t } = useTranslation()
-  const navigate  = useNavigate();
+  const navigate = useNavigate();
   const queryClient = useQueryClient()
 
   const SignupSchema = Yup.object().shape({
     email: Yup.string()
-    .email('Invalid email')
-    .required('Required'),
+      .email('Invalid email')
+      .required('Required'),
     password: Yup.string()
       .min(2, 'Too Short!')
       .max(70, 'Too Long!')
@@ -41,12 +43,21 @@ const Login = ({user,isLoading}) => {
         queryClient.setQueryData(['user'], data)
         navigate('/admin')
       },
-      onError:(error)=>{
+      onError: (error) => {
         console.log('error', error)
       }
     })
-    
   }
+  // const handleDataImage = (e, setFieldValue) => {
+  //   const reader = new FileReader();
+  //   reader.onload = () => {
+  //     if (reader.readyState === 2) {
+  //       setFieldValue('avatar', reader.result);
+  //       setAvatarPreview(reader.result);
+  //     }
+  //   };
+  //   reader.readAsDataURL(e.target.files[0]);
+  // }
 
   return (
     <section
@@ -58,8 +69,8 @@ const Login = ({user,isLoading}) => {
         className={`absolute inset-0 top-[120px]  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5 `}
       >
         <div className="bg-slate-900 flex w-full min-h-[15rem] lg:min-h-[25rem] xl:min-h-[30rem] 2xl:min-h-[40rem] rounded-2xl">
-          <div className="w-3/5 bg-gray-500 hidden sm:block rounded-l-2xl m-5 rounded-2xl ">
-            gird 1
+          <div className="w-3/5 bg-gray-500 hidden sm:block m-5 rounded-2xl ">
+            <CarouselComponent />
           </div>
           <div className="w-full sm:w-2/5  rounded-2xl sm:rounded-none sm:rounded-r-2xl m-5 ">
             <div className="text-center mt-4">
@@ -71,49 +82,60 @@ const Login = ({user,isLoading}) => {
               initialValues={{
                 email: '',
                 password: '',
+                avatar: '',
               }}
               validationSchema={SignupSchema}
-              onSubmit={(values)=>handleSubmitForm(values)}
+              onSubmit={(values) => handleSubmitForm(values)}
             >
-              <Form>
-                <div className="w-full mt-5">
-                  <FormInput
-                    name='email'
-                    type='email'
-                    id='email'
-                    transKey='email'
-                    required={true}
-                  />
-                </div>
-                <FormInput
-                  name='password'
-                  type={showPassword ? 'text' : 'password'}
-                  id='password'
-                  transKey='password'
-                  required={true}
-                >
-                  {showPassword ? (
-                    <VisibilityIcon
-                      onClick={() => setShowPassword(!showPassword)}
-                      className='inner-icon h-5 w-5 text-gray-500'
-                    />
-                  ) : (
-                    <VisibilityOffIcon
-                      onClick={() => setShowPassword(!showPassword)}
-                      className='inner-icon h-5 w-5 text-gray-500'
-                    />
-                  )}
-                </FormInput>
-                <div className="w-full flex justify-center">
-                  <button type='submit'
-                    className='button-link py-3 my-4 px-8 rounded-xl outline-none w-40 text-white font-bold'
-                  >
-                    Login
-                  </button>
-                </div>
-              </Form>
+              {({ setFieldValue }) => {
+                return (
+                  <Form>
+                    <div className="w-full mt-5">
+                      <FormInput
+                        name='email'
+                        type='email'
+                        id='email'
+                        transKey='email'
+                        required={true}
+                      />
+                    </div>
+                    <FormInput
+                      name='password'
+                      type={showPassword ? 'text' : 'password'}
+                      id='password'
+                      transKey='password'
+                      required={true}
+                    >
+                      {showPassword ? (
+                        <VisibilityIcon
+                          onClick={() => setShowPassword(!showPassword)}
+                          className='inner-icon h-5 w-5 text-gray-500'
+                        />
+                      ) : (
+                        <VisibilityOffIcon
+                          onClick={() => setShowPassword(!showPassword)}
+                          className='inner-icon h-5 w-5 text-gray-500'
+                        />
+                      )}
+                    </FormInput>
+                    {/* <label htmlFor="icon-button-file">
+                      <img src={avatarPreview} alt="Avatar Preview" />
+                      <input name="avatar" style={{ display: 'none' }} accept="image/*" id="icon-button-file" type="file" onChange={(e) => handleDataImage(e, setFieldValue)} />
+                      <IconButton color="primary" aria-label="upload picture" component="span">
+                        <PhotoCamera />
+                      </IconButton>
+                    </label> */}
+                    <div className="w-full flex justify-center">
+                      <button type='submit'
+                        className='button-link py-3 my-4 px-8 rounded-xl outline-none w-40 text-white font-bold'
+                      >
+                        Login
+                      </button>
+                    </div>
+                  </Form>
+                )
+              }}
             </Formik>
-
           </div>
         </div>
       </div>
