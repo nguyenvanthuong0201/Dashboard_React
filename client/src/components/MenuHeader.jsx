@@ -11,10 +11,12 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
+import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
 import { useLogoutUser } from '../queries/useUser';
+import { Link } from 'react-router-dom';
 
 const MenuHeader = ({ anchorEl, open, handleClose }) => {
-    const {mutate:logout} = useLogoutUser();
+    const { mutate: logout } = useLogoutUser();
     return (
         <><Menu
             anchorEl={anchorEl}
@@ -52,11 +54,19 @@ const MenuHeader = ({ anchorEl, open, handleClose }) => {
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
             <MenuItem onClick={handleClose}>
-                <Avatar /> Profile
+                <ListItemIcon>
+                    <Avatar fontSize="small" />
+                </ListItemIcon>
+                Profile
             </MenuItem>
-            <MenuItem onClick={handleClose}>
-                <Avatar /> My account
-            </MenuItem>
+            <Link to={'/admin'}>
+                <MenuItem onClick={handleClose}>
+                    <ListItemIcon>
+                        <DashboardCustomizeIcon fontSize="small" />
+                    </ListItemIcon>
+                    Dashboard
+                </MenuItem>
+            </Link>
             <Divider />
             <MenuItem onClick={handleClose}>
                 <ListItemIcon>
@@ -70,7 +80,7 @@ const MenuHeader = ({ anchorEl, open, handleClose }) => {
                 </ListItemIcon>
                 Settings
             </MenuItem>
-            <MenuItem onClick={()=>logout()}>
+            <MenuItem onClick={() => logout()}>
                 <ListItemIcon>
                     <Logout fontSize="small" />
                 </ListItemIcon>

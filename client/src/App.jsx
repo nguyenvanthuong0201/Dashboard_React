@@ -15,8 +15,8 @@ function App() {
   axios.defaults.withCredentials = true;
   const { t } = useTranslation();
   const [user, setUser] = useState()
-  const {isLoading } = useGetUser({
-    retry:1,
+  const { isLoading } = useGetUser({
+    retry: 1,
     onSuccess: (data) => {
       setUser(data?.result)
     },
@@ -29,10 +29,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home user={user} isLoading={isLoading} />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/admin" element={user && <AdminRoute user={user}  isLoading={isLoading}   />} >
-          <Route path="/admin" element={<Dashboard />} />
-          <Route path="/admin/calendar" element={<Calendar />} />
+        <Route path="/login" element={<Login user={user} isLoading={isLoading} />} />
+        <Route path="/admin" element={user ? <AdminRoute user={user} isLoading={isLoading} /> : <ProgressLoader />} >
+          <Route path="/admin" element={user ? <Dashboard user={user} isLoading={isLoading} /> : <ProgressLoader />} />
+          <Route path="/admin/calendar" element={<Calendar user={user} />} />
         </Route>
         <Route path="/permission-denied" element={<ErrorPage />} />
       </Routes>

@@ -16,6 +16,7 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import ConstructionIcon from '@mui/icons-material/Construction';
 import ImageUser from "../../assets/user.png"
 import { useTranslation } from "react-i18next";
 
@@ -114,7 +115,7 @@ const Sidebar = () => {
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
             <Item
               title="Dashboard"
-              to="/"
+              to="/admin"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -124,7 +125,7 @@ const Sidebar = () => {
             <SubMenu title={t('manage')} icon={<PeopleOutlinedIcon />}>
               <Item
               title={t("calendar")}
-              to="/calendar"
+              to="/admin/calendar"
               icon={<TodayIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -132,7 +133,7 @@ const Sidebar = () => {
               />
               <Item
               title="Contacts Information"
-              to="/contacts"
+              to="/admin/contacts"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -140,14 +141,14 @@ const Sidebar = () => {
               />
               <Item
               title="Invoices Balances"
-              to="/invoices"
+              to="/admin/invoices"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
               isCollapsed={isCollapsed}
               />
           </SubMenu>
-          <SubMenu title="Tool" icon={<PeopleOutlinedIcon />}>
+          <SubMenu title="Tool" icon={<ConstructionIcon />}>
           <Item
               title="Profile Form"
               to="/form"

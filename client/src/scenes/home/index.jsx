@@ -2,6 +2,7 @@ import React from 'react'
 import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, Works, StarsCanvas } from "../../components";
 import ProgressLoader from '../../components/ProgressLoader';
 
+
 const Home = ({ user,isLoading }) => {
   return (
     <div className='relative z-0 bg-primary'>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styles } from "../../styles";
 import { motion } from "framer-motion";
 import { Navbar } from "../../components";
@@ -11,8 +11,9 @@ import * as Yup from "yup";
 import { useLoginUser } from "../../queries/useUser";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
+import ProgressLoader from "../../components/ProgressLoader";
 
-const Login = () => {
+const Login = ({user,isLoading}) => {
   const {mutate:loginUser} = useLoginUser()
   const [showPassword, setShowPassword] = useState(false)
   const { t } = useTranslation()
@@ -28,6 +29,12 @@ const Login = () => {
       .max(70, 'Too Long!')
       .required('Required'),
   });
+  useEffect(() => {
+    if(user){
+      navigate('/')
+    }
+  }, [user])
+  
   const handleSubmitForm =(value)=>{
     loginUser({...value},{
       onSuccess:(data)=>{
@@ -45,7 +52,8 @@ const Login = () => {
     <section
       className={`relative w-full h-screen mx-auto bg-hero-pattern bg-cover bg-no-repeat bg-center`}
     >
-      {/* <Navbar /> */}
+      {isLoading && (<ProgressLoader/>)}
+      <Navbar user={user} />
       <div
         className={`absolute inset-0 top-[120px]  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5 `}
       >
