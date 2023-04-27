@@ -22,7 +22,6 @@ app.use(session({
     }
 }))
 
-
 app.use("/api/v1", calendar)
 app.use("/api/v1", user)
 
