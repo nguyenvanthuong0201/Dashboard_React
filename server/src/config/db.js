@@ -1,10 +1,14 @@
-import { MongoClient, ServerApiVersion } from "mongodb";
-let DB_URI = "mongodb+srv://nvthuongc15nvtroi:i5LMitbjX4gWUUHG@dashboard.hkmbhsj.mongodb.net/?retryWrites=true&w=majority"
-export const client = new MongoClient(DB_URI,  {
-        serverApi: {
-            version: ServerApiVersion.v1,
-            strict: true,
-            deprecationErrors: true,
-        }
-    }
-);
+import mongoose from 'mongoose';
+
+export const connectDatabase = () => {
+    mongoose.connect(process.env.DB_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
+    mongoose.connection.on("connected", () => {
+        console.log("Connected MongoDB Atlas");
+    });
+    mongoose.connection.off("error", () => {
+        console.log("Don't connect MongoDB Atlas");
+    })
+};

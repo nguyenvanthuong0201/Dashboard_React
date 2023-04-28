@@ -23,6 +23,11 @@ import {
   jobit,
   tripguide,
   threejs,
+  ai,
+  stylishShirt,
+  logoShirt,
+  file,
+  swatch,
 } from "../assets";
 
 export const navLinks = [
@@ -262,4 +267,41 @@ const projects = [
   },
 ];
 
-export { services, technologies, experiences, testimonials, projects };
+const EditorTabs = [
+  {
+    name: "colorpicker",
+    icon: swatch,
+  },
+  {
+    name: "filepicker",
+    icon: file,
+  },
+  {
+    name: "aipicker",
+    icon: ai,
+  },
+];
+
+const FilterTabs = [
+  {
+    name: "logoShirt",
+    icon: logoShirt,
+  },
+  {
+    name: "stylishShirt",
+    icon: stylishShirt,
+  },
+];
+
+const DecalTypes = {
+  logo: {
+    stateProperty: "logoDecal",
+    filterTab: "logoShirt",
+  },
+  full: {
+    stateProperty: "fullDecal",
+    filterTab: "stylishShirt",
+  },
+};
+
+export { EditorTabs, FilterTabs, DecalTypes, services, technologies, experiences, testimonials, projects };

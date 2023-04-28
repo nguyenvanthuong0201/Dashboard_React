@@ -1,7 +1,7 @@
 import {ErrorHandler}  from "../utils/errorHandler.js";
 import {catchAsyncErrors}  from "../middleware/catchAsyncError.js";
 import jwt from "jsonwebtoken";
-import { client } from "../config/db.js";
+// import { client } from "../config/db.js";
 
 
 export const isAuthenticatedUser  = catchAsyncErrors(async(req,res,next)=>{

@@ -10,6 +10,8 @@ import ErrorPage from './scenes/global/ErrorPage';
 import Home from './scenes/home';
 import Login from './scenes/login';
 import ProgressLoader from './components/ProgressLoader';
+import Clothes from './scenes/clothes';
+import User from './scenes/user';
 
 function App() {
   axios.defaults.withCredentials = true;
@@ -24,14 +26,16 @@ function App() {
       setUser(null)
     },
   });
-  console.log('user', user)
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home user={user} isLoading={isLoading} />} />
+        <Route path="/" element={<Clothes />} />
+        {/* <Route path="/" element={<Home user={user} isLoading={isLoading} />} /> */}
         <Route path="/login" element={<Login user={user} isLoading={isLoading} />} />
         <Route path="/admin" element={user ? <AdminRoute user={user} isLoading={isLoading} /> : <ProgressLoader />} >
           <Route path="/admin" element={user ? <Dashboard user={user} isLoading={isLoading} /> : <ProgressLoader />} />
+          <Route path="/admin/users" element={<User user={user} />} />
+          <Route path="/admin/user/:id" element={<User user={user} />} />
           <Route path="/admin/calendar" element={<Calendar user={user} />} />
         </Route>
         <Route path="/permission-denied" element={<ErrorPage />} />

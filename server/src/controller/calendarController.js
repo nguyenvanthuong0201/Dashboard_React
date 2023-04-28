@@ -1,13 +1,9 @@
-import { ObjectId } from "mongodb";
-import { client } from "../config/db.js";
+import { Calendar } from "../model/index.js";
 
 export const getCalendar = async (req, res, next) => {
     try {
-        await client.connect();
-        const database = client.db("MyLife");
-        const calendar = database.collection("calendar");
-        const query = {"userID": req.params.id};
-        const result = await calendar.find(query).toArray();
+        const query = { "userID": req.params.id };
+        const result = await Calendar.find(query).toArray();
         res.status(200).json({
             result,
             success: true,
@@ -17,38 +13,16 @@ export const getCalendar = async (req, res, next) => {
             success: false,
             error
         });
-    } finally{
-        await client.close();
     }
 }
 
 export const updateCalendar = async (req, res, next) => {
     try {
-        await client.connect();
-        const database = client.db("MyLife");
-        const calendar = database.collection("calendar");
-        const docs =[
-            {
-                id: new Date('2023-04-19').getTime(),
-                userID:"U"+Date.now(),
-                title:"HỌP",
-                start:"2023-04-19",
-                end:'',
-                allDay:true
-            },
-            {
-                id: new Date('2023-04-19').getTime(),
-                userID:"U"+Date.now(),
-                title:"Đi nhậu",
-                start:"2023-04-20",
-                end:'',
-                allDay:true
-            },
-        ];
+        const docs = req.body.data
         const options = { ordered: true };
-        const query = { userID: { $regex: req.params.id} };
-        await calendar.deleteMany(query);
-        const result = await calendar.insertMany(docs,options);
+        const query = { userID: { $regex: req.params.id } };
+        await Calendar.deleteMany(query);
+        const result = await Calendar.insertMany(docs, options);
         res.status(200).json({
             success: true,
             result,
@@ -58,7 +32,7 @@ export const updateCalendar = async (req, res, next) => {
             success: false,
             error
         });
-    } finally{
+    } finally {
         await client.close();
     }
 }

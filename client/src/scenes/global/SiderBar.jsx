@@ -18,9 +18,11 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import ConstructionIcon from '@mui/icons-material/Construction';
 import ImageUser from "../../assets/user.png"
+import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import { useTranslation } from "react-i18next";
 
-const Item = ({ title, to, icon, selected, setSelected ,isCollapsed}) => {
+const Item = ({ title, to, icon, selected, setSelected, isCollapsed }) => {
   return (
     <Tooltip title={title} placement="right" disableHoverListener={!isCollapsed}>
       <MenuItem
@@ -39,7 +41,7 @@ const Item = ({ title, to, icon, selected, setSelected ,isCollapsed}) => {
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -75,10 +77,10 @@ const Sidebar = () => {
                 alignItems="center"
                 ml="15px"
               >
-                <Typography variant="h5"  className="text-slate-900 dark:text-white" >
+                <Typography variant="h5" className="text-slate-900 dark:text-white" >
                   ADMIN
                 </Typography>
-                <IconButton className="text-slate-900 dark:text-white"  onClick={() => setIsCollapsed(!isCollapsed)}>
+                <IconButton className="text-slate-900 dark:text-white" onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
                 </IconButton>
               </Box>
@@ -122,88 +124,88 @@ const Sidebar = () => {
               isCollapsed={isCollapsed}
             />
 
-            <SubMenu title={t('manage')} icon={<PeopleOutlinedIcon />}>
+            <SubMenu title={t('user')} icon={<PermIdentityIcon />}>
               <Item
-              title={t("calendar")}
-              to="/admin/calendar"
-              icon={<TodayIcon />}
-              selected={selected}
-              setSelected={setSelected}
-              isCollapsed={isCollapsed}
+                title={t('useList')}
+                to="/admin/users"
+                icon={<PeopleOutlineIcon />}
+                selected={selected}
+                setSelected={setSelected}
+                isCollapsed={isCollapsed}
               />
               <Item
-              title="Contacts Information"
-              to="/admin/contacts"
-              icon={<ContactsOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-              isCollapsed={isCollapsed}
+                title="Invoices Balances"
+                to="/admin/invoices"
+                icon={<ReceiptOutlinedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+                isCollapsed={isCollapsed}
+              />
+            </SubMenu>
+            <SubMenu title="Tool" icon={<ConstructionIcon />}>
+              <Item
+                title={t("calendar")}
+                to="/admin/calendar"
+                icon={<TodayIcon />}
+                selected={selected}
+                setSelected={setSelected}
+                isCollapsed={isCollapsed}
               />
               <Item
-              title="Invoices Balances"
-              to="/admin/invoices"
-              icon={<ReceiptOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-              isCollapsed={isCollapsed}
+                title="Profile Form"
+                to="/form"
+                icon={<PersonOutlinedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+                isCollapsed={isCollapsed}
               />
-          </SubMenu>
-          <SubMenu title="Tool" icon={<ConstructionIcon />}>
-          <Item
-              title="Profile Form"
-              to="/form"
-              icon={<PersonOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-              isCollapsed={isCollapsed}
-            />
-            <Item
-              title="Calendar"
-              to="/calendar"
-              icon={<CalendarTodayOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-              isCollapsed={isCollapsed}
-            />
-            <Item
-              title="FAQ Page"
-              to="/faq"
-              icon={<HelpOutlineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-              isCollapsed={isCollapsed}
-            />
-          </SubMenu> 
-          <SubMenu title='Charts' icon={<BarChartOutlinedIcon/>}>
-          <Item
-            title="Bar Chart"
-            to="/bar"
-            icon={<BarChartOutlinedIcon />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Item
-            title="Pie Chart"
-            to="/pie"
-            icon={<PieChartOutlineOutlinedIcon />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Item
-            title="Line Chart"
-            to="/line"
-            icon={<TimelineOutlinedIcon />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Item
-            title="Geography Chart"
-            to="/geography"
-            icon={<MapOutlinedIcon />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          </SubMenu>
+              <Item
+                title="Calendar"
+                to="/calendar"
+                icon={<CalendarTodayOutlinedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+                isCollapsed={isCollapsed}
+              />
+              <Item
+                title="FAQ Page"
+                to="/faq"
+                icon={<HelpOutlineOutlinedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+                isCollapsed={isCollapsed}
+              />
+            </SubMenu>
+            <SubMenu title='Charts' icon={<BarChartOutlinedIcon />}>
+              <Item
+                title="Bar Chart"
+                to="/bar"
+                icon={<BarChartOutlinedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+              <Item
+                title="Pie Chart"
+                to="/pie"
+                icon={<PieChartOutlineOutlinedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+              <Item
+                title="Line Chart"
+                to="/line"
+                icon={<TimelineOutlinedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+              <Item
+                title="Geography Chart"
+                to="/geography"
+                icon={<MapOutlinedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+            </SubMenu>
           </Box>
         </Menu>
       </ProSidebar>

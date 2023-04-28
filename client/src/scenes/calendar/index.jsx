@@ -45,7 +45,6 @@ const Calendar = () => {
                 allDay: event?.allDay
             })
         })
-        console.log('arrayMap', arrayMap)
     }
 
     const handleEventClick = (selected) => {

@@ -6,6 +6,7 @@ import user from './src/routers/userRouter.js';
 import session from "express-session";
 import bodyParser from "body-parser";
 import cloudinary from "cloudinary";
+import { connectDatabase } from "./src/config/db.js";
 
 dotenv.config();
 const app = express();
@@ -22,6 +23,7 @@ app.use(session({
     }
 }))
 
+
 app.use("/api/v1", calendar)
 app.use("/api/v1", user)
 
@@ -33,6 +35,8 @@ cloudinary.v2.config({
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET,
 });
+connectDatabase()
+
 
 
 app.listen(8088, () => console.log('Server has started on port 8088'))
