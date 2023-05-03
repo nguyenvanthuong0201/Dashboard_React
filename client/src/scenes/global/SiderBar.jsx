@@ -27,7 +27,7 @@ const Item = ({ title, to, icon, selected, setSelected, isCollapsed }) => {
     <Tooltip title={title} placement="right" disableHoverListener={!isCollapsed}>
       <MenuItem
         active={selected === title}
-        className="text-slate-900 dark:text-white text-sm"
+        className="text-slate-900 dark:text-white text-base"
         onClick={() => setSelected(title)}
         icon={icon}
       >
@@ -56,10 +56,10 @@ const Sidebar = () => {
           padding: "5px 35px 5px 20px !important",
         },
         "& .pro-inner-item:hover": {
-          color: "#868dfb !important",
+          color: "#10b6cf !important",
         },
         "& .pro-menu-item.active": {
-          color: "#6870fa !important",
+          color: "#10b6cf !important",
         },
       }}
     >
@@ -91,11 +91,9 @@ const Sidebar = () => {
             <Box mb="25px">
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
+                  className="rounded-full w-32 h-32 object-cover border-2 p-1 border-[#10b6cf]"
                   alt="profile-user"
-                  width="100px"
-                  height="100px"
                   src={ImageUser}
-                  style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
               <Box textAlign="center">
@@ -126,7 +124,7 @@ const Sidebar = () => {
 
             <SubMenu title={t('user')} icon={<PermIdentityIcon />}>
               <Item
-                title={t('useList')}
+                title={t('userList')}
                 to="/admin/users"
                 icon={<PeopleOutlineIcon />}
                 selected={selected}

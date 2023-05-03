@@ -3,6 +3,10 @@
   "subCalendar":"完全なカレンダー インタラクティブ ページ",
   "manage":"管理",
   "events":"イベント",
+  "user":"User",
+  "userList":"User list",
+  "passwordNotMatch": "パスワードの確認が一致しません!",
+
 
 
 

@@ -22,7 +22,6 @@ const TableCustom = ({
     const { t } = useTranslation()
     const [page, setPage] = React.useState(0)
     const [rowsPerPage, setRowsPerPage] = React.useState(10)
-
     const handleChangePage = (event, newPage) => {
         setPage(newPage)
     }
@@ -35,18 +34,18 @@ const TableCustom = ({
     return (
         <div className='w-full' style={{ ...style }}>
             <TableContainer
-                className={'border border-stale-100 rounded-lg ' + className}
+                className={'border border-[#10b6cf] rounded-lg text-slate-900 dark:text-white ' + className}
                 sx={{
                     maxHeight: '100%',
-                    maxWidth: 'calc(100vw - 420px) !important',
+                    maxWidth: '100%'
                 }}
             >
-                <Table stickyHeader aria-label='sticky table'>
-                    <TableHead>
+                <Table stickyHeader aria-label='sticky table ' className='bg-gray-100 dark:bg-slate-800 '>
+                    <TableHead >
                         <TableRow>
-                            {columns.map((column) => (
+                            {columns?.map((column) => (
                                 <TableCell
-                                    className='bg-gray-100 w-fit'
+                                    className='w-fit table-header'
                                     key={'header_' + column.id}
                                     align={column.align}
                                     style={{
@@ -60,14 +59,13 @@ const TableCustom = ({
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows
-                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                        {rows && rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((row, rowIndex) => (
                                 <TableRow
                                     hover
                                     role='checkbox'
                                     tabIndex={-1}
-                                    key={'row_' + row.id}
+                                    key={'row_' + row._id}
                                     className={onRowSelected ? 'cursor-pointer' : ''}
                                     onClick={() => {
                                         if (onRowSelected) {
@@ -78,7 +76,8 @@ const TableCustom = ({
                                     {columns.map((column, index) => {
                                         const value = row[column.id]
                                         return (
-                                            <TableCell key={column.id} align={column.align}>
+                                            <TableCell
+                                                className='text-slate-900 dark:text-white  ' key={column.id} align={column.align}>
                                                 {column.format
                                                     ? column.format({ value, index, rowIndex, row })
                                                     : value}
@@ -91,10 +90,16 @@ const TableCustom = ({
                 </Table>
             </TableContainer>
             <TablePagination
+                sx={{
+                    '.MuiSvgIcon-root ': {
+                        fill: "white !important",
+                    }
+                }}
+                className='text-slate-900 dark:text-white '
                 labelRowsPerPage={t('itemsPerPage')}
                 rowsPerPageOptions={[10, 25, 100]}
                 component='div'
-                count={rows.length}
+                count={rows?.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}

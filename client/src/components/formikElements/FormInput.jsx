@@ -11,7 +11,7 @@ const FormikInput = (props) => {
     return (
         <input
           disabled={props.disabled}
-          className='wavy-input w-full'
+          className='wavy-input w-full bg-gray-100 text-slate-900 dark:text-white dark:bg-slate-800'
           type={(props.type === 'number' && !mobile) ? 'text' : props.type}
           min={props.min}
           max={props.max}
@@ -56,7 +56,7 @@ const FormInput = (props) => {
                     {required && <span className='text-red-500'>*</span>}
                 </label>
             )}
-            <div className={children ? 'input-with-icon' : ''}>
+            <div className={children ? 'input-with-icon ' : ''}>
                 <Field className='w-full wavy-input' id={id} name={name}>
                     {() => (
                         <FormikInput

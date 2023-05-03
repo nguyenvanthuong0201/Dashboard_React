@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useGetUser } from './queries/useUser';
@@ -26,18 +26,21 @@ function App() {
       setUser(null)
     },
   });
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Clothes />} />
-        {/* <Route path="/" element={<Home user={user} isLoading={isLoading} />} /> */}
+        <Route path="/" element={<Home user={user} isLoading={isLoading} />} />
         <Route path="/login" element={<Login user={user} isLoading={isLoading} />} />
-        <Route path="/admin" element={user ? <AdminRoute user={user} isLoading={isLoading} /> : <ProgressLoader />} >
-          <Route path="/admin" element={user ? <Dashboard user={user} isLoading={isLoading} /> : <ProgressLoader />} />
-          <Route path="/admin/users" element={<User user={user} />} />
-          <Route path="/admin/user/:id" element={<User user={user} />} />
-          <Route path="/admin/calendar" element={<Calendar user={user} />} />
-        </Route>
+        {user && (
+          <Route path="/admin" element={<AdminRoute user={user} isLoading={isLoading} />} >
+            <Route path="/admin" element={<Dashboard user={user} isLoading={isLoading} />} />
+            <Route path="/admin/users" element={<User user={user} />} />
+            <Route path="/admin/user/:id" element={<User user={user} />} />
+            <Route path="/admin/clothes" element={<Clothes />} />
+            <Route path="/admin/calendar" element={<Calendar user={user} />} />
+          </Route>
+        )}
         <Route path="/permission-denied" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>

@@ -16,20 +16,20 @@ const userSchema = new mongoose.Schema({
     userID: { type: String, default: "U" + Date.now() },
     name: { type: String, required: [true, 'Please enter your name'] },
     email: { type: String, required: [true, 'Please enter your email'], unique: true },
-    work_name: { type: String, required: [true, 'Please enter your work name'] },
-    password: { type: String, required: [true, 'Please enter your password'] },
+    workName: { type: String, required: [true, 'Please enter your work name'] },
+    password: { type: String, required: [true, 'Please enter your password'], select: false },
     role: { type: Number, default: 1 },
     status: { type: Number, default: 0 },
     is_delete: { type: Number, default: 0 },
     created_at: { type: Date, default: new Date(Date.now()) },
     updated_at: { type: Date, default: new Date(Date.now()) },
     avatar: {
-        public_id: { type: String, required: true, },
-        url: { type: String, required: true, },
+        public_id: { type: String },
+        url: { type: String },
     },
     resetPasswordToken: String,
     resetPasswordExpire: Date,
 })
-userSchema.plugin(uniqueValidator)
-export const User = mongoose.model('user', calendarSchema)
+userSchema.plugin(uniqueValidator, { message: 'Duplicate {PATH} entered.' })
+export const User = mongoose.model('user', userSchema)
 

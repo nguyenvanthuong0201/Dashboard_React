@@ -1,12 +1,12 @@
-import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Navigate, Outlet, useNavigate } from 'react-router-dom';
 import Sidebar from '../scenes/global/SiderBar';
 import TopBar from '../scenes/global/TopBar';
 import ProgressLoader from '../components/ProgressLoader';
 
 const AdminRoute = ({ user, isLoading }) => {
-  console.log('user admin', user)
-  return (user && user?.role === 0) ? (
+
+  return (user) ? (
     <>
       {isLoading && (<ProgressLoader />)}
       <div className="app bg-gray-200 dark:bg-slate-900">

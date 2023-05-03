@@ -3,7 +3,7 @@ import { Calendar } from "../model/index.js";
 export const getCalendar = async (req, res, next) => {
     try {
         const query = { "userID": req.params.id };
-        const result = await Calendar.find(query).toArray();
+        const result = await Calendar.find(query);
         res.status(200).json({
             result,
             success: true,

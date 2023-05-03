@@ -5,4 +5,5 @@ export const URLS = {
     LOGIN: `${BASE_URL}/api/v1/user/login`,
     LOGOUT: `${BASE_URL}/api/v1/user/logout`,
     USER_LIST: `${BASE_URL}/api/v1/users`,
+    REGISTER: `${BASE_URL}/api/v1/user/register`,
 }

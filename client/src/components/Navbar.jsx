@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { styles } from "../styles";
 import { navLinks } from "../constants";
@@ -7,8 +7,12 @@ import { logo, menu, close } from "../assets";
 import SelectLanguages from "./SelectLanguages";
 import { Avatar, Divider, IconButton } from "@mui/material";
 import MenuHeader from "./MenuHeader";
+import { useDarkSide } from "../theme";
 
 const Navbar = ({ user }) => {
+  const location = useLocation();
+  const theme = localStorage.getItem('theme');
+  const [colorTheme, setTheme] = useDarkSide();
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -36,6 +40,15 @@ const Navbar = ({ user }) => {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!theme || (theme === 'light' && ['/', '/login'].includes(location.pathname))) {
+      localStorage.setItem('theme', 'dark')
+      const root = window.document.documentElement;
+      root.classList.remove('light');
+      root.classList.add('dark');
+    }
+  }, [theme, location])
 
   return (
     <nav
@@ -130,7 +143,7 @@ const Navbar = ({ user }) => {
                   </button>
                 </li>
                 <li>
-                  <button type='button' style={{background:"gray"}} onClick={() => navigate('/admin')}
+                  <button type='button' style={{ background: "gray" }} onClick={() => navigate('/admin')}
                     className='button-link  py-3  px-4 rounded outline-none w-32 text-white '
                   >
                     logout

@@ -278,7 +278,7 @@ body,
 
 .button-link,
 a.button-link {
-  padding: 6px 16px;
+  padding: 10px 16px;
   border-radius: 8px;
   background: #10b6cf;
   color: white !important;
@@ -378,4 +378,16 @@ a.button-link {
 }
 .carousel .control-dots .dot{
   background: rgba(16, 182, 207, 1) !important;
+}
+.table-header {
+  background: #10b6cf !important;
+  font-weight: bold !important;
+  color: white !important;
+}
+.MuiTableCell-body{
+  border-top: 1px solid #10b6cf !important ;
+  border-bottom: none !important;
+}
+.MuiTableCell-head{
+  border-bottom: none !important;
 }

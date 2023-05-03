@@ -3,6 +3,10 @@
   "subCalendar":"Full calendar interactive page",
   "manage":"Manage",
   "events":"Events",
+  "user":"User",
+  "userList":"User list",
+  "passwordNotMatch": "Password confirmation is not match",
+
   
 
 

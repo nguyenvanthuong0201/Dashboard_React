@@ -6,7 +6,7 @@ export const uploadImageCloud = async (imagePath, key = '') => {
         overwrite: true,
         folder: "Life",
     };
-    if (key != '') {
+    if (key == 'avatar') {
         options.width = 250;
         options.crop = 'scale';
     }

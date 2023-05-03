@@ -11,7 +11,10 @@ const loginUser = async (formData) => {
     const { data } = await axios.post(`${URLS.LOGIN}`, formData)
     return data
 }
-
+const registerUser = async (formData) => {
+    const { data } = await axios.post(`${URLS.REGISTER}`, formData)
+    return data
+}
 const logoutUser = async () => {
     const { data } = await axios.post(`${URLS.LOGOUT}`)
     return data
@@ -36,7 +39,7 @@ export const useGetUser = (option) => {
 export const useGetListUser = () => {
     const result = useQuery({
         queryKey: ['user_list'],
-        queryFn: () => getUser(),
+        queryFn: () => getListUser(),
     })
     return result
 }
@@ -61,4 +64,15 @@ export const useLogoutUser = () => {
     })
     return result
 }
+
+export const useRegisterUser = () => {
+    const queryClient = useQueryClient()
+    const result = useMutation(registerUser, {
+        onSuccess: (data) => {
+            queryClient.invalidateQueries('registerUser')
+        },
+    })
+    return result
+}
+
 

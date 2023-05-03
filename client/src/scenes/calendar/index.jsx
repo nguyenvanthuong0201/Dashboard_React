@@ -54,7 +54,7 @@ const Calendar = () => {
     }
 
     return (
-        <div className=" bg-gray-100 dark:bg-slate-800">
+        <div className="relative rounded-md mr-3 bg-gray-100 dark:bg-slate-800">
             <div className="p-5">
                 <Header title={t('calendar')} subtitle={t('subCalendar')} />
                 <Box display={'flex'} justifyContent={'space-between'}>
