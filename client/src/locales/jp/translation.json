@@ -6,8 +6,14 @@
   "user":"User",
   "userList":"User list",
   "passwordNotMatch": "パスワードの確認が一致しません!",
-
-
+  "topHello":"こんにちは、私は",
+  "topName":"Thuong",
+  "topLastName":"です",
+  "topContentSub":"私はフルスタックプログラマーで、現在、日本のアウトソ",
+  "topContentSub1":"ーシング企業で2年間の経験を持っています。",
+  "about":"の想い",
+  "work":"仕事",
+  "contact": "連絡先",
 
 
   
@@ -161,7 +167,6 @@
   "index": "インデックス",
   "title": "タイトル",
   "content": "コンテンツ",
-  "contact": "連絡先",
   "contactDetail": "連絡先情報",
   "contactAgree":"同意する（必須）",
   "contactDescription":"※当社の<MyLink>「プライバシーポリシー」</MyLink>に同意いただける場合は、「同意する」にチェックを付け、入力内容をご送信ください。",

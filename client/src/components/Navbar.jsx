@@ -8,6 +8,7 @@ import SelectLanguages from "./SelectLanguages";
 import { Avatar, Divider, IconButton } from "@mui/material";
 import MenuHeader from "./MenuHeader";
 import { useDarkSide } from "../theme";
+import { useTranslation } from "react-i18next";
 
 const Navbar = ({ user }) => {
   const location = useLocation();
@@ -18,6 +19,8 @@ const Navbar = ({ user }) => {
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const { t } = useTranslation();
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -76,7 +79,7 @@ const Navbar = ({ user }) => {
                 } hover:text-white text-[18px] font-medium cursor-pointer`}
               onClick={() => setActive(nav.title)}
             >
-              <a href={`#${nav.id}`}>{nav.title}</a>
+              <a href={`#${nav.id}`}>{t(nav.title)}</a>
             </li>
           ))}
           <li className="flex items-center">
@@ -98,7 +101,7 @@ const Navbar = ({ user }) => {
               <button type='button' onClick={() => navigate('/login')}
                 className='button-link py-3 px-3 rounded outline-none w-24 text-white '
               >
-                Signin
+                {t('login')}
               </button>
             </li>
           )}
@@ -146,7 +149,7 @@ const Navbar = ({ user }) => {
                   <button type='button' style={{ background: "gray" }} onClick={() => navigate('/admin')}
                     className='button-link  py-3  px-4 rounded outline-none w-32 text-white '
                   >
-                    logout
+                    {t('logout')}
                   </button>
                 </li>
               </>
@@ -156,7 +159,7 @@ const Navbar = ({ user }) => {
                   <button type='button' onClick={() => navigate('/login')}
                     className='button-link py-3  px-4 rounded outline-none w-24 text-white '
                   >
-                    Signin
+                   {t('login')}
                   </button>
                 </li>
               )}

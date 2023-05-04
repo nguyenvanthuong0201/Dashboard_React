@@ -6,8 +6,14 @@
   "user":"Người dùng",
   "userList":"Bảng người dùng",
   "passwordNotMatch": "Xác nhận mật khẩu không khớp!",
-
-
+  "topHello":"Xin chào, tôi là ",
+  "topName":"Thương",
+  "topLastName":"",
+  "topContentSub":"Tôi là một lập trình viên fullstack, hiện có 2 năm kinh nghiệm làm việc ",
+  "topContentSub1":"cho một công ty gia công phần mềm của Nhật Bản.",
+  "about":"Giới thiệu",
+  "work":"Công việc",
+  "contact": "Liên hệ",
 
 
 
@@ -161,7 +167,6 @@
   "index": "Thứ tự",
   "title": "Tiêu đề",
   "content": "Nội dung",
-  "contact": "Liên hệ",
   "contactDetail": "Thông tin liên hệ",
   "contactAgree":"Tôi đồng ý (bắt buộc)",
   "contactDescription":"* Nếu bạn chấp thuận với <MyLink> “Chính sách quyền riêng tư” </MyLink> của chúng tôi, vui lòng đánh dấu vào ô “Tôi đồng ý” và gửi thông tin phản hồi của bạn.",

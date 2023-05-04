@@ -6,8 +6,14 @@
   "user":"User",
   "userList":"User list",
   "passwordNotMatch": "Password confirmation is not match",
-
-  
+  "topHello":"Hi, I'm ",
+  "topName":"Thuong",
+  "topLastName":"",
+  "topContentSub":"I am a fullstack programmer, currently with 2 years ",
+  "topContentSub1":"of experience working for a Japanese outsourcing company.",
+  "about":"About",
+  "work":"Work",
+  "contact":"Contact",
 
 
   
@@ -161,7 +167,6 @@
   "index": "Index",
   "title": "Title",
   "content": "Content",
-  "contact": "Contact",
   "contactDetail": "Contact detail",
   "contactAgree":"I agree (required)",
   "contactDescription":"* If you agree with our <MyLink>“Privacy Policy“</MyLink> , please check “I agree“ and send your input.",
